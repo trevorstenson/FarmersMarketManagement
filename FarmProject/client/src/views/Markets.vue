@@ -19,7 +19,8 @@
                         <v-divider></v-divider>
                     <v-list two-line>
                         <template v-for="(market, index) in markets">
-                        <v-list-tile avatar ripple :key="index" @click="">
+                        <v-list-tile avatar ripple :key="index" 
+                        @click="toSpecificMarket(market)">
                             <v-list-tile-content>
                                 <v-list-tile-title v-text="market.name" class="text--primary"></v-list-tile-title>
                                 <v-list-tile-sub-title v-text="market.state"></v-list-tile-sub-title>
@@ -41,8 +42,8 @@
 
 <script>
     import Map from '../components/Map.vue'
-
     import MarketApi from '../api/markets'
+    //import router from '../router'
 
     export default {
         name: "Markets",
@@ -52,7 +53,8 @@
         data() {
             return {
                 markets: [],
-                searchTerm: ""
+                searchTerm: "",
+                clickedMarket: null
             }
         },
         mounted() {
@@ -62,7 +64,6 @@
             fetchAllMarkets() {
                 MarketApi.getAllMarkets()
                     .then(markets => {
-                        console.log(markets);
                         this.markets = markets;
                     })
             },
@@ -71,6 +72,9 @@
                     .then(markets => {
                         this.markets = markets;
                     })
+            },
+            toSpecificMarket(market) {
+                this.$router.push({ name: 'Market', params: { market } })
             }
         }
     }

@@ -33,5 +33,27 @@ export default {
             .then(response => {
                 return response.data;
             })
+    },
+    createVendor(name, count, id) {
+        return axios.post('/vendor/', {
+            Name: name,
+            Stallcount: count,
+            FarmId: id
+        }).then(response => {
+            return response.data;
+        })
+    },
+    getVendorsForMarket(id) {
+        return axios.get('/vendor/' + id)
+            .then(response => {
+                return response.data;
+            })
+    },
+    updateProductCategories(id, categories) {
+        return axios.patch('/' + id, {
+            categories: categories
+        }).then(response => {
+            return response.data;
+        })
     }
 }

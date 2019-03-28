@@ -9,7 +9,7 @@
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">New Farm</span>
+          <span class="headline">New Vendor</span>
         </v-card-title>
         <v-card-text>
           <v-container grid-list-md>
@@ -41,6 +41,8 @@
 </template>
 
 <script>
+    import MarketApi from '../api/markets'
+
     export default {
         name: "Vendors",
         data () {
@@ -53,7 +55,13 @@
         },
         methods: {
             addVendor() {
-
+              MarketApi.createVendor(newName, newCount, newID)
+                  .then(response => {
+                    this.dialog1 = false;
+                    this.newName = "";
+                    this.newCount = null;
+                    this.newID = "";
+                  })
             }
         }
     }

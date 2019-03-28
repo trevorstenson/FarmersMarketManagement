@@ -28,13 +28,15 @@ import Markets from './views/Markets.vue'
 import Home from './views/Home.vue'
 import Farms from './views/Farms.vue'
 import Vendors from './views/Vendors.vue'
+import Market from './views/Market.vue'
 
 const router = new VueRouter({
     routes: [
       { path: "/", component: Home },
       { path: "/markets", component: Markets },
       { path: "/farms", component: Farms },
-      { path: "/vendors", component: Vendors }
+      { path: "/vendors", component: Vendors },
+      { path: "/market", name: 'Market', component: Market, props: true }
     ]
 });
 
