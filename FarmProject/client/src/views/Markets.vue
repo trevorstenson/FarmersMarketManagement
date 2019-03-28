@@ -2,7 +2,7 @@
     <div id="markets">
         <v-container class="my-1">
             <v-layout row wrap justify-center>
-                <v-flex xs6 md4 lg2>
+                <v-flex xs6 md4 lg3>
                     <v-text-field v-model="searchTerm"
                         label="State"
                         solo
@@ -82,7 +82,7 @@
 }
 
 .v-list {
-    height: 533px;
+    height: 380px;
     overflow-y: auto;
 }
 </style>

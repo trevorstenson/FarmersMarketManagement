@@ -2,7 +2,7 @@
   <div id="app">
     <Navigation/>
     <router-view></router-view>
-    <Footer/>
+    <Footer id="footer"/>
   </div>
 </template>
 
@@ -27,4 +27,10 @@ export default {
   color: #2c3e50;
   margin-top: 0px;
 }
+
+.footer {
+  position: relative;
+  bottom: 0px;
+}
+
 </style>
