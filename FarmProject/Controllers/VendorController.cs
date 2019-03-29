@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using FarmProject.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 
 namespace FarmProject.Controllers
 {
@@ -67,17 +67,18 @@ namespace FarmProject.Controllers
 
         //updates the product categories sold by the given Vendor
         [HttpPatch("{id}")]
-        public IActionResult UpdateProductCategories(int id, [FromBody] List<int> categories)
+        public IActionResult UpdateProductCategories(int id, [FromBody] string categories)
         {
-
-            var datalist = JsonConvert.DeserializeObject<List<RootObject>>(categories);
-
+            var datalist = JsonConvert.DeserializeObject<List<int>>(categories);
+            
             _context.Sells.FromSql("DELETE FROM sells WHERE vendorID = {0}", id);
 
             foreach (int item in datalist)
             {
                _context.Sells.FromSql("CALL update_sells({0}, {1})", id, item);
             }
+            
+            
             return StatusCode(200);
         }
     }
