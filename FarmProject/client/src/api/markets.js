@@ -6,17 +6,26 @@ export default {
             .then(response => {
                 return response.data;
             })
+            .catch(error => {
+                console.log(error.response);
+            })
     },
     getMarketsByState(state) {
         return axios.get('/market/' + state)
             .then(response => {
                 return response.data;
             })
+            .catch(error => {
+                console.log(error.response);
+            })
     },
     getAllFarms() {
         return axios.get('/farm')
             .then(response => {
                 return response.data;
+            })
+            .catch(error => {
+                console.log(error);
             })
     },
     createFarm(name, state, mainProduct) {
@@ -27,11 +36,17 @@ export default {
         }).then(response => {
             return response.data;
         })
+        .catch(error => {
+            console.log(error.response);
+        })
     },
     removeFarm(id) {
         return axios.delete('/farm/' + id)
             .then(response => {
                 return response.data;
+            })
+            .catch(error => {
+                console.log(error.response);
             })
     },
     createVendor(name, count, id) {
@@ -42,11 +57,17 @@ export default {
         }).then(response => {
             return response.data;
         })
+        .catch(error => {
+            console.log(error.response);
+        })
     },
     getVendorsForMarket(id) {
         return axios.get('/vendor/' + id)
             .then(response => {
                 return response.data;
+            })
+            .catch(error => {
+                console.log(error.response);
             })
     },
     updateProductCategories(id, categories) {
@@ -54,6 +75,9 @@ export default {
             categories: categories
         }).then(response => {
             return response.data;
+        })
+        .catch(error => {
+            console.log(error.response);
         })
     }
 }

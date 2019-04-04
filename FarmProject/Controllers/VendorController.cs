@@ -47,7 +47,7 @@ namespace FarmProject.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Vendor vendor)
         {
-            _context.Vendor.FromSql("CALL add_vendor({0}, {1}, {2})", vendor.Name, vendor.Stallcount, vendor.FarmId);
+            _context.Database.ExecuteSqlCommand("CALL add_vendor({0}, {1}, {2})", vendor.Name, vendor.Stallcount, vendor.FarmId);
             return StatusCode(201);
         }
 
@@ -71,13 +71,12 @@ namespace FarmProject.Controllers
         {
             var datalist = JsonConvert.DeserializeObject<List<int>>(categories);
             
-            _context.Sells.FromSql("DELETE FROM sells WHERE vendorID = {0}", id);
+            _context.Database.ExecuteSqlCommand("DELETE FROM sells WHERE vendorID = {0}", id);
 
             foreach (int item in datalist)
             {
-               _context.Sells.FromSql("CALL update_sells({0}, {1})", id, item);
+               _context.Database.ExecuteSqlCommand("CALL update_sells({0}, {1})", id, item);
             }
-            
             
             return StatusCode(200);
         }

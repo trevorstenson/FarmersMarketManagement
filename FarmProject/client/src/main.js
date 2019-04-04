@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import axios from 'axios'
 
 axios.defaults.baseURL = 'https://localhost:5001/api'
+axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
 
@@ -29,6 +30,7 @@ import Home from './views/Home.vue'
 import Farms from './views/Farms.vue'
 import Vendors from './views/Vendors.vue'
 import Market from './views/Market.vue'
+import Vendor from './views/Vendor.vue'
 
 const router = new VueRouter({
     routes: [
@@ -36,7 +38,8 @@ const router = new VueRouter({
       { path: "/markets", component: Markets },
       { path: "/farms", component: Farms },
       { path: "/vendors", component: Vendors },
-      { path: "/market", name: 'Market', component: Market, props: true }
+      { path: "/market", name: 'Market', component: Market, props: true },
+      { path: "/vendor", name: 'Vendor', component: Vendor, props: true }
     ]
 });
 
