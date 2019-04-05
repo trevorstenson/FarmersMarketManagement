@@ -71,13 +71,30 @@ export default {
             })
     },
     updateProductCategories(id, categories) {
-        return axios.patch('/' + id, {
-            categories: categories
-        }).then(response => {
+        return axios.patch('/vendor/' + id, categories)
+            .then(response => {
             return response.data;
         })
         .catch(error => {
             console.log(error.response);
         })
+    },
+    getAllCategories() {
+        return axios.get('/product/')
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
+    },
+    getVendorCategories(id) {
+        return axios.get('/product/' + id)
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
     }
 }

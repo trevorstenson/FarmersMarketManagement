@@ -43,7 +43,7 @@ namespace FarmProject.Controllers
         [HttpPost]
         public IActionResult Create([FromBody] Farm farm)
         {
-            _context.Farm.FromSql("CALL add_farm({0}, {1}, {2})", farm.Name, farm.State, farm.MainProduct);
+            _context.Database.ExecuteSqlCommand("CALL add_farm({0}, {1}, {2})", farm.Name, farm.State, farm.MainProduct);
             return StatusCode(201);
         }
 

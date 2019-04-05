@@ -1,4 +1,4 @@
-<template>
+<template xmlns:v-slot="http://www.w3.org/1999/XSL/Transform">
     <div id="farms">
         <v-container class="my-1">
             <v-layout row wrap justify-center>
@@ -65,7 +65,7 @@
             </v-layout>
             <v-layout row wrap justify-center>
             <template>
-                <v-flex xs10 md6 lg4>
+                <v-flex xs10 md6 lg5>
                 <v-data-table
                     :headers="headers"
                     :items="farms"
