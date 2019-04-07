@@ -49,11 +49,12 @@ export default {
                 console.log(error.response);
             })
     },
-    createVendor(name, count, id) {
+    createVendor(name, count, id, marketId) {
         return axios.post('/vendor/', {
             Name: name,
             Stallcount: count,
-            FarmId: id
+            FarmId: id,
+            MarketId: marketId
         }).then(response => {
             return response.data;
         })

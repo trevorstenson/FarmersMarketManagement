@@ -15,7 +15,7 @@
             <v-layout row wrap justify-center justify-space-around>
                 <v-flex md3>
                     <v-card>
-                        <v-card-title><div class="headline mb-0">Markets</div></v-card-title>
+                        <v-card-title><div class="headline mb-3 mt-3 ml-3">Markets</div></v-card-title>
                         <v-divider></v-divider>
                     <v-list two-line>
                         <template v-for="(market, index) in markets">
@@ -23,8 +23,8 @@
                         @click="toSpecificMarket(market)">
                             <v-list-tile-content>
                                 <v-list-tile-title v-text="market.name" class="text--primary"></v-list-tile-title>
-                                <v-list-tile-sub-title v-text="market.state"></v-list-tile-sub-title>
-                            <v-list-tile-sub-title>Credit: {{ market.credit }}</v-list-tile-sub-title>
+                                <v-list-tile-sub-title v-text="market.state" class="ml-1"></v-list-tile-sub-title>
+                            <v-list-tile-sub-title class="ml-1">Credit: {{ market.credit }}</v-list-tile-sub-title>
                             </v-list-tile-content>
                         </v-list-tile>
                         <v-divider v-if="index + 1 < markets.length" :key="`divider-${index}`"></v-divider>

@@ -43,11 +43,15 @@ namespace FarmProject.Controllers
             return result;
         }
 
-        //creates a new Vendor object in the database
+        //creates a new Vendor object in the database for the given market id
         [HttpPost]
-        public IActionResult Create([FromBody] Vendor vendor)
+        public IActionResult Create([FromBody] VendorTransferModel vendor)
         {
             _context.Database.ExecuteSqlCommand("CALL add_vendor({0}, {1}, {2})", vendor.Name, vendor.Stallcount, vendor.FarmId);
+            var nextId = _context.Vendor.Max(v => v.VendorId);
+            var newParticipates = new Participates { MarketId = vendor.MarketId, VendorId = nextId};
+            _context.Participates.Add(newParticipates);
+            _context.SaveChanges();
             return StatusCode(201);
         }
 
@@ -67,13 +71,13 @@ namespace FarmProject.Controllers
 
         //updates the product categories sold by the given Vendor
         [HttpPatch("{id}")]
-        public IActionResult UpdateProductCategories(int id, [FromBody] string categories)
+        public IActionResult UpdateProductCategories(int id, [FromBody] int[] categories)
         {
-            var datalist = JsonConvert.DeserializeObject<List<int>>(categories);
+            var datalist = categories.ToList();
             
             _context.Database.ExecuteSqlCommand("DELETE FROM sells WHERE vendorID = {0}", id);
 
-            foreach (int item in datalist)
+            foreach (var item in datalist)
             {
                _context.Database.ExecuteSqlCommand("CALL update_sells({0}, {1})", id, item);
             }

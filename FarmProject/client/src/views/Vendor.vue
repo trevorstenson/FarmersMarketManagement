@@ -4,19 +4,21 @@
             <v-container class="my-1">
                 <v-layout row wrap justify-space-around>
                     <v-flex sm2 lg3>
-                        <v-card hover="true">
+                        <v-card hover>
                             <v-card-title>
-                                    <h3 class="headline mb-0">Product Categories</h3>
+                                    <h3 class="headline mb-3 mt-3 ma-auto">Product Categories</h3>
                             </v-card-title>
-                            <v-checkbox class="" v-for="p in allCategories" v-model="selected" :key="p.categoryId" :label="p.categoryName" :value="p.categoryId"></v-checkbox>
-                            <v-btn flat class="blue darken-2 white--text">Update categories</v-btn>
+                            <v-divider></v-divider>
+                            <v-checkbox class="ml-4" v-for="p in allCategories" v-model="selected" :key="p.categoryId" :label="p.categoryName" :value="p.categoryId"></v-checkbox>
+                            <v-btn flat class="blue darken-2 white--text" @click="updateCategories()">Update categories</v-btn>
                         </v-card>
                     </v-flex>
-                    <v-flex sm2 lg3>
+                    <v-flex sm2 lg4>
                         <v-card elevation="2">
                             <v-card-title>
-                                <h3 class="headline mb-0">{{ clickedVendor.name }}</h3>
+                                <h3 class="headline mb-3 mt-3 ma-auto">{{ clickedVendor.name }}</h3>
                             </v-card-title>
+                            <v-divider></v-divider>
                             <v-list>
                                 <template v-for="(p, index) in vendorCategories">
                                     <v-list-tile avatar ripple :key="index">
@@ -65,8 +67,15 @@
             getAllCategories() {
                 MarketApi.getAllCategories()
                     .then(response => {
-                        console.log(response);
                         this.allCategories = response;
+                    })
+            },
+            updateCategories() {
+                console.log(this.selected.toString());
+                MarketApi.updateProductCategories(this.clickedVendor.vendorId, this.selected)
+                    .then(response => {
+                        this.selected = [];
+                        this.getVendorCategories();
                     })
             }
         }

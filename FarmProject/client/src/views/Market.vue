@@ -91,7 +91,7 @@
             this.$router.push({ name: 'Vendor', params: { vendor } })
           },
           addVendor() {
-            MarketApi.createVendor(this.newName, this.newStallcount, this.newFarmId)
+            MarketApi.createVendor(this.newName, this.newStallcount, this.newFarmId, this.clickedMarket.marketId)
                 .then(response => {
                   this.newName = "";
                   this.newStallcount = "";
