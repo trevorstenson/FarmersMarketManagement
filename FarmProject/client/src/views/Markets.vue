@@ -33,7 +33,7 @@
                     </v-card>
                 </v-flex>
                 <v-flex md7>
-                    <Map id="map" :markets="markets"/>
+                    <Map id="map" :markets="markets" class="elevation-3"/>
                 </v-flex>
             </v-layout>
         </v-container>

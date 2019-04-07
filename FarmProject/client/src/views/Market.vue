@@ -1,9 +1,9 @@
 <template>
     <div id="market">
       <v-container class="my-1">
-        <v-layout row wrap justify-center class="marketInfo">
+        <v-layout row wrap justify-center class="marketInfo mb-3 elevation-2">
           <v-flex xs6 md6 lg6>
-              Market #{{ clickedMarket.marketId }}:  {{ clickedMarket.name }}
+              Market:  {{ clickedMarket.name }}
           </v-flex>
           <v-flex>
               State: {{ clickedMarket.state }}
@@ -39,12 +39,20 @@
                   <tr @click="toSpecificVendor(props.item)">
                     <td>{{ props.item.name }}</td>
                     <td class="text-xs-center">{{ props.item.stallcount }}</td>
-                    <td class="text-xs-center">{{ props.item.farmId }}</td>
+                    <td class="text-xs-center">{{ props.item.vendorId }}</td>
                   </tr>
                 </template>
                 </v-data-table>
                 </v-flex>
             </template>
+            <v-flex lg2>
+                <div class="headline mb-2">Delete Vendor</div>
+                <v-text-field v-model="deleteVendorId"
+                              label="Vendor ID"
+                              solo
+                ></v-text-field>
+                <v-btn class="blue darken-2 white--text" @click="deleteVendor()">Delete</v-btn>
+            </v-flex>
             </v-layout>
       </v-container>
     </div>
@@ -57,6 +65,7 @@
         name: "Market",
         data() {
             return {
+                deleteVendorId: "",
                 newName: "",
                 newStallcount: "",
                 newFarmId: "",
@@ -98,7 +107,13 @@
                   this.newFarmId = "";
                   this.getMarketVendors();
                 })
-          }
+          },
+            deleteVendor() {
+              MarketApi.deleteVendor(this.deleteVendorId)
+                  .then(response => {
+                      this.getMarketVendors();
+                  })
+            }
         }
     }
 </script>
@@ -109,7 +124,7 @@
 }
 
 .marketInfo {
-  background-color: lightblue;
+  background-color: lightgray;
   font-size: 30px;
 }
 </style>

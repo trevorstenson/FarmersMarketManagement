@@ -62,6 +62,15 @@ export default {
             console.log(error.response);
         })
     },
+    deleteVendor(id) {
+        return axios.delete('/vendor/' + id)
+            .then(response => {
+                return response.data;
+            })
+            .catch(error => {
+                console.log(error.response);
+            })
+    },
     getVendorsForMarket(id) {
         return axios.get('/vendor/' + id)
             .then(response => {

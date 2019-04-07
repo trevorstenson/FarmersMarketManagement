@@ -59,12 +59,15 @@ namespace FarmProject.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var farm = await _context.Farm.FindAsync(id);
-            if (farm == null)
+            var vendor = await _context.Vendor.FindAsync(id);
+            if (vendor == null)
             {
                 return NotFound();
             }
-            _context.Farm.Remove(farm);
+
+            var vendorParticipation = _context.Participates.Where(p => p.VendorId == vendor.VendorId);
+            _context.Participates.RemoveRange(vendorParticipation);
+            _context.Vendor.Remove(vendor);
             await _context.SaveChangesAsync();
             return StatusCode(202);
         }

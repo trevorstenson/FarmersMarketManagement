@@ -45,7 +45,7 @@
           <span class="headline">Delete Farm</span>
         </v-card-title>
         <v-card-text>
-          <v-container grid-list-md>
+          <v-container>
             <v-layout justify-center wrap>
               <v-flex xs12 sm6 md4>
                 <v-text-field label="Farm ID*" required v-model="deleteId"></v-text-field>
