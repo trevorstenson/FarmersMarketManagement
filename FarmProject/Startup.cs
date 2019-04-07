@@ -41,11 +41,12 @@ namespace FarmProject
 
             services.AddProblemDetails();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
-
+            
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "client/dist";
             });
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -71,16 +72,20 @@ namespace FarmProject
             });
 
             app.UseSpaStaticFiles();
+            app.UseStaticFiles();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseProblemDetails();
             app.UseHttpsRedirection();
             app.UseMvc();
 
+
+            
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "client";
             });
+            
         }
     }
 }
