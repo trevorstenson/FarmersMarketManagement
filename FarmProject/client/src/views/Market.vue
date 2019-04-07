@@ -111,6 +111,7 @@
             deleteVendor() {
               MarketApi.deleteVendor(this.deleteVendorId)
                   .then(response => {
+                      this.deleteVendorId = "";
                       this.getMarketVendors();
                   })
             }

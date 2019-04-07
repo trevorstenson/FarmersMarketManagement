@@ -21,20 +21,6 @@ namespace FarmProject.Controllers
             _context = context;
         }
 
-        /*
-        //gets the Vendor object with the given id
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Vendor>> GetById(int id)
-        {
-            var vendor = await _context.Vendor.FindAsync(id);
-            if (vendor == null)
-            {
-                return NotFound();
-            }
-            return vendor;
-        }
-        */
-
         //gets all vendors for a specific market
         [HttpGet("{id}")]
         public ActionResult<List<Vendor>> GetByMarket(int id)
