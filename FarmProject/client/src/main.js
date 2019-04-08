@@ -3,7 +3,7 @@ import App from './App.vue'
 import VueRouter from 'vue-router'
 import axios from 'axios'
 
-axios.defaults.baseURL = 'https://localhost:5001/api'
+axios.defaults.baseURL = 'https://farmprojectcs3200.azurewebsites.net/api'
 axios.defaults.headers.common['Access-Control-Allow-Origin'] = '*'
 
 import * as VueGoogleMaps from 'vue2-google-maps'
