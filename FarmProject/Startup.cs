@@ -42,10 +42,12 @@ namespace FarmProject
             services.AddProblemDetails();
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
             
+            /*
             services.AddSpaStaticFiles(configuration =>
             {
                 configuration.RootPath = "client/dist";
             });
+            */
             
         }
 
@@ -71,21 +73,26 @@ namespace FarmProject
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
             });
 
-            app.UseSpaStaticFiles();
+            //app.UseSpaStaticFiles();
             app.UseStaticFiles();
 
             app.UseCors(x => x.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().AllowCredentials());
             app.UseProblemDetails();
             app.UseHttpsRedirection();
-            app.UseMvc();
+            app.UseMvc(routes =>
+            {
+                routes.MapSpaFallbackRoute(
+                    "Spa",
+                    new {controller = "Home", action = "Spa"});
+            });
 
 
-            
+            /*
             app.UseSpa(spa =>
             {
                 spa.Options.SourcePath = "client";
             });
-            
+            */
         }
     }
 }

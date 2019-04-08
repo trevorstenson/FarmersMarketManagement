@@ -1,7 +1,7 @@
 module.exports = {
-  outputDir: undefined,
+  outputDir: '../wwwroot',
   assetsDir: undefined,
-  publicPath: undefined,
+  publicPath: '',
   runtimeCompiler: undefined,
   productionSourceMap: undefined,
   parallel: undefined,
