@@ -17,9 +17,10 @@
             <v-card>
               <v-card-title primary-title>
                 <div>
-                  <h3 class="headline mb-0">Add a Vendor</h3>
+                  <h3 class="headline">Add a Vendor</h3>
                 </div>
               </v-card-title>
+                <v-divider></v-divider>
               <v-text-field label="Name*" required v-model="newName"></v-text-field>
               <v-text-field label="Stall Count*" required v-model="newStallcount"></v-text-field>
               <v-text-field label="Farm ID*" required v-model="newFarmId"></v-text-field>

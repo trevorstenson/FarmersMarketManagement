@@ -6,7 +6,7 @@
                     <v-flex sm2 lg3>
                         <v-card hover>
                             <v-card-title>
-                                    <h3 class="headline mb-3 mt-3 ma-auto">Product Categories</h3>
+                                    <h3 class="title mb-1 mt-1 ma-auto">Product Categories</h3>
                             </v-card-title>
                             <v-divider></v-divider>
                             <v-checkbox class="ml-4" v-for="p in allCategories" v-model="selected" :key="p.categoryId" :label="p.categoryName" :value="p.categoryId"></v-checkbox>
@@ -16,15 +16,16 @@
                     <v-flex sm2 lg4>
                         <v-card elevation="2">
                             <v-card-title>
-                                <h3 class="headline mb-3 mt-3 ma-auto">{{ clickedVendor.name }}</h3>
+                                <h3 class="title mb-1 mt-1 ma-auto">{{ clickedVendor.name }}</h3>
                             </v-card-title>
                             <v-divider></v-divider>
                             <v-list>
                                 <template v-for="(p, index) in vendorCategories">
                                     <v-list-tile avatar ripple :key="index">
-                                        <v-list-tile-content>
+                                        <v-list-tile-content class="">
                                             {{ p.categoryName }}
                                         </v-list-tile-content>
+                                     
                                     </v-list-tile>
                                     <v-divider v-if="index + 1 < vendorCategories.length" :key="`divider-${index}`"></v-divider>
                                 </template>
@@ -84,7 +85,7 @@
 
 <style scoped>
     #vendor {
-        margin-top: 100px;
+        margin-top: 55px;
     }
 
     .v-list {
